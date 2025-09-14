@@ -45,9 +45,12 @@ connectDB()
 app.get("/",(req,res)=>{
     res.json("API is Running ...")
 })
-app.listen(PORT,()=>{  
-    console.log(`server running on http://localhost:${PORT}`)
-})
+app.get('/ip', (req, res) => {
+  const clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log('🚀 Railway IP:', clientIp);
+  res.json({ ip: clientIp });
+});
+
 
 app.use('/api/user',userRouter)
 app.use('/api/partner',partnerRouter)
@@ -57,3 +60,6 @@ app.use('/api/subscripe',subscripRouter)
 app.use('/api/work',workRouter)
 app.use('/api/MsgAdmin',MessageAdmin)
 app.use('/api/Product',productRouter)
+app.listen(PORT,()=>{  
+    console.log(`server running on http://localhost:${PORT}`)
+})
