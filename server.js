@@ -23,12 +23,12 @@ const PORT =process.env.PORT || 8080
 // Middleware
 
 app.use(cors({
- credentials:true,
-    origin:process.env.FRONTEND_URL
-}
+  credentials: true,
+  origin: /https:\/\/firstex1\.vercel\.app\/?/
+}));
    
 
-))
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(morgan('dev'))
