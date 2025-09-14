@@ -1,13 +1,10 @@
-import mongoose from 'mongoose'
-const categorySchema = new mongoose.Schema({
-    name:{
-        type:String,
-        default:""
-    },
-    image:{
-        type:String,
-        default:""
-    },
-}, { timestamps: true })
-const CategoryModel=mongoose.model("Category",categorySchema)
-export default CategoryModel
+import mongoose from "mongoose";
+
+const CategorySchema = new mongoose.Schema({
+  name: { ar: String, en: String },
+  slug: { type: String, unique: true },
+  parent: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', default: null } // null للفئات الرئيسية
+});
+
+const CategoryModel = mongoose.model("Category", CategorySchema);
+export default CategoryModel;

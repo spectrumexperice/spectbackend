@@ -5,6 +5,7 @@ const sendDetailedMessage = async (req, res) => {
   try {
     const {
       fullName,
+      company,
       email,
       projectName,
       projectStatus,
@@ -18,6 +19,7 @@ const sendDetailedMessage = async (req, res) => {
     // تحقق الحقول المطلوبة
     if (
       !fullName ||
+      !company||
       !email ||
       !projectName ||
       !projectStatus ||
@@ -49,6 +51,7 @@ const sendDetailedMessage = async (req, res) => {
     // تحضير البيانات للحفظ
     const messageData = {
       fullName,
+      company,
       email,
       projectName,
       projectStatus,

@@ -7,10 +7,30 @@ import isAdmin from '../middleware/admin.js'
 
 const partnerRouter=express.Router()
 
-partnerRouter.post('/add',auth ,isAdmin,upload.single("image"),addPartner)
+
+partnerRouter.post(
+  '/add',
+  auth,
+  isAdmin,
+  upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "thankImage", maxCount: 1 }
+  ]),
+  addPartner
+);
 partnerRouter.get("/getall",getAllPartners)
 partnerRouter.get("/get/:id", getSinglePartner);
-partnerRouter.patch("/update/:id",auth,isAdmin,updatePartner)
+partnerRouter.patch(
+  "/update/:id",
+  auth,
+  isAdmin,
+  upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "thankImage", maxCount: 1 }
+  ]),
+  updatePartner
+);
+
 partnerRouter.delete("/delete/:id",auth,isAdmin,deletePartner)
 
 export default partnerRouter

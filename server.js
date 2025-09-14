@@ -9,8 +9,11 @@ import connectDB from '../backend/config/database.js'
 import userRouter from './routes/userRouter.js'
 import messageRouter from './routes/messageRouter.js'
 import partnerRouter from './routes/partnerRouter.js'
-import subscripeRouter from './routes/subscripRouter.js'
+import subscripRouter from './routes/subscripRouter.js'
 import messageCapitalRouter from './routes/MessageCapitalRouter.js'
+import workRouter from './routes/WorkImgRouter.js'
+import MessageAdmin from './routes/MsgAdminRouter.js'
+import productRouter from './routes/productRouter.js'
 dotenv.config()
 
 const app=express()
@@ -50,4 +53,7 @@ app.use('/api/user',userRouter)
 app.use('/api/partner',partnerRouter)
 app.use('/api/message',messageRouter)
 app.use('/api/messageCapital',messageCapitalRouter)
-app.use('/api/subscripe',subscripeRouter)
+app.use('/api/subscripe',subscripRouter)
+app.use('/api/work',workRouter)
+app.use('/api/MsgAdmin',MessageAdmin)
+app.use('/api/Product',productRouter)

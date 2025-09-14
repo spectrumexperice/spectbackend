@@ -7,4 +7,5 @@ const SubscriberSchema = new mongoose.Schema({
   subscribedAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.models.Subscriber || mongoose.model("Subscriber", SubscriberSchema);
+const SubscriberModel= mongoose.model("Subscriber", SubscriberSchema);
+export default SubscriberModel
