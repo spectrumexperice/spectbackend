@@ -24,7 +24,12 @@ const PORT =process.env.PORT || 8080
 
 app.use(cors({
   credentials: true,
-  origin: /https:\/\/firstex1\.vercel\.app\/?/
+  origin: [
+    "https://firstex1.vercel.app",
+    "https://www.s-spectrum.com",
+    "https://s-spectrum.com"
+  ]
+  
 }));
    
 
