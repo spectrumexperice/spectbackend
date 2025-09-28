@@ -1,4 +1,4 @@
-import { Resend } from 'resend';
+/* import { Resend } from 'resend';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -32,4 +32,39 @@ const sendEmail = async ({ sendTo, subject, html}) => {
   }
 };
 
-export default sendEmail;
+export default sendEmail; */
+
+
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+dotenv.config()
+//التاكد من وجود المتغيرات البيئيه
+if(!process.env.MAIL_HOST || !process.env.MALI_PORT || !process.env.MAIL_USER || !process.env.MAIL_PASS){
+  throw new Error("please provide all the env varibales in the .env file")
+}
+const transporter=nodemailer.createTransport({
+  host:process.env.MAIL_HOST,
+  port:Number(process.env.MALI_PORT),
+  secure:true,
+  auth:{
+    user:process.env.MAIL_USER,
+    pass:process.env.MAIL_PASS
+  }
+})
+//داله الارسال
+const sendEmail=async({to,subject,html})=>{
+  try{
+      const info=await transporter.sendMail({
+        from :`"Spectrum"<${process.env.MAIL_USER}>`,
+        to:to,
+        subject:subject,
+        html:html
+      })
+      console.log("✅ Email sent:", info.messageId);
+      return { success: true, info };
+  }catch (error) {
+    console.error("❌ Email error:", error);
+    return { success: false, error };
+  }
+}
+export default sendEmail

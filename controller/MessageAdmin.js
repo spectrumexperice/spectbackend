@@ -73,7 +73,7 @@ try {
       await message.save()
       try{ 
          await sendEmail({
-        sendTo: message.email,
+           to: message.email,
         subject: "رد على رسالتك : شركة سبكتروم",
         html: `
           <p>عزيزي ${message.fullName},</p>
@@ -103,7 +103,7 @@ import { Parser } from "json2csv";
 export const exportMessages = async (req, res) => {
   try {
     // التحقق من الصلاحيات الإضافية
-    if (!req.userRole === 'admin') {
+    if (req.userRole !== 'admin') {
       return res.status(403).json({ success: false, message: "غير مصرح لك بهذا الإجراء" });
     }
 

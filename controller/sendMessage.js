@@ -12,7 +12,7 @@ try{
     }
     const payload=({fullName,email,phone,message})
      const newMessage=await new MessageModel(payload)
-     newMessage.save()
+     await newMessage.save()
      return res.status(201).json({
         message :"تم ارسال رسالتك بنجاح",
         error:false,

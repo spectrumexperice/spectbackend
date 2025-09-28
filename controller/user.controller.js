@@ -35,7 +35,7 @@ export async function registerUserController(req,res){
         
         const verifyEmailURL=`${process.env.FRONTEND_URL}/verify-email?code=${save._id}`
         const verifyEmail=await sendEmail({
-            sendTo:email,
+            to:email,
             subject:"تأكيد حسابك ",
             name:name,
             html:`
@@ -244,7 +244,7 @@ export async function forgotPasswordController(req,res){
            forgot_password_expiry:new Date(expiryTime).toISOString()
         })
         await sendEmail({
-            sendTo:email,
+            to:email,
             subject:"استعادة كلمة المرور",
             html:
             `
