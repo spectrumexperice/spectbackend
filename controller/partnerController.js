@@ -150,9 +150,21 @@ export async function updatePartner(req, res) {
     if (req.body.companyName !== undefined) {
       partner.companyName = req.body.companyName;
     }
-    if (req.body.displayOrder !== undefined) {
-      partner.displayOrder = req.body.displayOrder;
-    }
+   if (req.body.displayOrder !== undefined) {
+  const existing = await partnerModel.findOne({ 
+    displayOrder: req.body.displayOrder, 
+    _id: { $ne: id }  // استثناء الشريك نفسه
+  });
+  if (existing) {
+    return res.status(400).json({
+      message: "رقم الترتيب مستخدم لشريك آخر",
+      error: true,
+      success: false,
+    });
+  }
+  partner.displayOrder = req.body.displayOrder;
+}
+
     if (req.body.active !== undefined) {
       partner.active = req.body.active;
     }

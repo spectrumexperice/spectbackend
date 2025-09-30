@@ -27,7 +27,8 @@ app.use(cors({
   origin: [
     "https://firstex1.vercel.app",
     "https://www.s-spectrum.com",
-    "https://s-spectrum.com"
+    "https://s-spectrum.com",
+    process.env.FRONTEND_URL
   ]
   
 }));
